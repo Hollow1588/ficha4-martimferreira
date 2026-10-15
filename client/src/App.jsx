@@ -23,16 +23,24 @@ function App() {
   const [filtro, setFiltro] = useState("todas");
 
   const cartasFiltradas = cards.filter((card) => {
-    if (filtro === "criaturas") return card.type === "Dragão"; 
-    if (filtro === "feitiços") return card.type === "Feitiço";
+    if (filtro === "Dragão") return card.type === "Dragão"; 
+    if (filtro === "Deus") return card.type === "Deus";
     return true; 
   });
   return (
     <main>
       <h1>A minha coleção</h1>
       <p>Tenho {cards.length} cartas</p>
+
+      <div style={{ marginBottom: "20px" }}>
+        <button onClick={() => setFiltro("todas")}>Todas</button>
+        <button onClick={() => setFiltro("Deus")}>Deus</button>
+        <button onClick={() => setFiltro("Dragão")}>Dragão</button>
+       
+      </div>
+
       <ul>
-        {cards.map((card, index) => (
+        {cartasFiltradas.map((card, index) => (
           <li key={index}>
             <Card 
               name={card.name} 
