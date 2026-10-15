@@ -21,16 +21,28 @@ import React, { useState } from 'react';
 import Card from "./Card"
 function App() {
   const [filtro, setFiltro] = useState("todas");
+  const [pesquisa, setPesquisa] = useState("");
 
   const cartasFiltradas = cards.filter((card) => {
-    if (filtro === "Dragão") return card.type === "Dragão"; 
-    if (filtro === "Deus") return card.type === "Deus";
-    return true; 
+    const passaTipo = filtro === "todas" ? true : card.type === filtro;
+    const passaPesquisa = card.name.toLowerCase().includes(pesquisa.toLowerCase());
+
+    return passaTipo && passaPesquisa;
   });
   return (
     <main>
       <h1>A minha coleção</h1>
       <p>Tenho {cards.length} cartas</p>
+
+      <div style={{ marginBottom: "15px" }}>
+        <input 
+          type="text" 
+          placeholder="Pesquisar carta..." 
+          value={pesquisa} 
+          onChange={(e) => setPesquisa(e.target.value)} 
+          style={{ padding: "5px", width: "200px" }}
+        />
+      </div>
 
       <div style={{ marginBottom: "20px" }}>
         <button onClick={() => setFiltro("todas")}>Todas</button>
