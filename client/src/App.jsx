@@ -11,24 +11,31 @@
 // Tarefa 1: substitui este array vazio pelo array cards do teu server
 // (o que fizeste na aula 2).
 
+import React, { useState } from 'react';
+import Card from "./Card"
 const cards = [{ name: "Dragão Branco de olhos azuis", type: "Dragão", attack: 3000, defense: 2500 },
   { name: "dragao preto de olhos vermelhos", type: "Dragão", attack: 2400, defense: 2000 },
   { name: "Slifer Dragão celeste", type: "Deus", attack: 5000, defense: 5000 },
   { name: "Dragão alado de Rá", type: "Deus", attack: 4000, defense: 4000 },
   { name: "Oblisco da Tormenta", type: "Deus", attack: 4000, defense: 4000 },
 ];
-import React, { useState } from 'react';
-import Card from "./Card"
+
 function App() {
   const [filtro, setFiltro] = useState("todas");
   const [pesquisa, setPesquisa] = useState("");
+  const [cartaSorte, setCartaSorte] = useState(null);
+}
 
   const cartasFiltradas = cards.filter((card) => {
     const passaTipo = filtro === "todas" ? true : card.type === filtro;
     const passaPesquisa = card.name.toLowerCase().includes(pesquisa.toLowerCase());
-
     return passaTipo && passaPesquisa;
   });
+
+  function escolherCartaSorte() {
+    const indiceAleatorio = Math.floor(Math.random() * cards.length);
+    setCartaSorte(cards[indiceAleatorio]);
+
   return (
     <main>
       <h1>A minha coleção</h1>
