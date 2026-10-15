@@ -10,12 +10,31 @@
 //
 // Tarefa 1: substitui este array vazio pelo array cards do teu server
 // (o que fizeste na aula 2).
-const cards = ["Dragão Branco de olhos azuis","Dragao preto de olhos vermelhos","Slifer the Sky Dragon", "Obelisk the Tormentor","The Winged Dragon of Ra"];
 
+const cards = [{ name: "Dragão Branco de olhos azuis", type: "Dragão", attack: 3000, defense: 2500 },
+  { name: "dragao preto de olhos vermelhos", type: "Dragão", attack: 2400, defense: 2000 },
+  { name: "Slifer Dragão celeste", type: "Deus", attack: 5000, defense: 5000 },
+  { name: "Dragão alado de Rá", type: "Deus", attack: 4000, defense: 4000 },
+  { name: "Oblisco da Tormenta", type: "Deus", attack: 4000, defense: 4000 },
+];
+import React from 'react';
+import Card from "./Card"
 function App() {
   return (
     <main>
       <h1>A minha coleção</h1>
+      <ul>
+        {cards.map((card, index) => (
+          <li key={index}>
+            <Card 
+              name={card.name} 
+              type={card.type} 
+              attack={card.attack} 
+              defense={card.defense} 
+            />
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }
