@@ -17,9 +17,16 @@ const cards = [{ name: "Dragão Branco de olhos azuis", type: "Dragão", attack:
   { name: "Dragão alado de Rá", type: "Deus", attack: 4000, defense: 4000 },
   { name: "Oblisco da Tormenta", type: "Deus", attack: 4000, defense: 4000 },
 ];
-import React from 'react';
+import React, { useState } from 'react';
 import Card from "./Card"
 function App() {
+  const [filtro, setFiltro] = useState("todas");
+
+  const cartasFiltradas = cards.filter((card) => {
+    if (filtro === "criaturas") return card.type === "Dragão"; 
+    if (filtro === "feitiços") return card.type === "Feitiço";
+    return true; 
+  });
   return (
     <main>
       <h1>A minha coleção</h1>
